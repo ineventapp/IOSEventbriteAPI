@@ -20,7 +20,8 @@ Example Code
 
 A Eventbrite client is created using a LIAEventbriteApplication.
 A LIAEventbriteApplication defines the application which is granted access to the users Eventbrite data.
-``` objective-c
+
+```
 LIAEventbriteApplication *application = [LIAEventbriteApplication applicationWithRedirectURL:@"http://www.ancientprogramming.com/liaexample"
                                                                                   clientId:@"clientId"
                                                                               clientSecret:@"clientSecret"
@@ -28,12 +29,14 @@ LIAEventbriteApplication *application = [LIAEventbriteApplication applicationWit
                                                                              grantedAccess:@[@"r_fullprofile", @"r_network"]];
 return [LIAEventbriteHttpClient clientForApplication:application presentingViewController:nil];
 ```
+
 * clientId: The id which is provided by Eventbrite upon registering an application.
 * clientSecret: The secret which is provided by Eventbrite upon registering an application.
 * presentingViewController: The view controller that the UIWebView will be modally presented from.  Passing nil assumes the root view controller.
 
 Afterwards the client can be used to retrieve an accesstoken and access the data using the Eventbrite API:
-``` objective-c
+
+```
 - (IBAction)didTapConnectWithEventbrite:(id)sender {
   [self.client getAuthorizationCode:^(NSString *code) {
     [self.client getAccessToken:code success:^(NSDictionary *accessTokenData) {
@@ -48,8 +51,8 @@ Afterwards the client can be used to retrieve an accesstoken and access the data
     NSLog(@"Authorization failed %@", error);
   }];
 }
-
 ```
+
 The code example retrieves an access token and uses it to get userdata for the user which granted the access.
 The cancel callback is executed in case the user actively declines the authorization by pressing cancel button in the UIWebView (see illustration above).
 The failure callbacks is executed in case either the of the steps fails for some reason.
