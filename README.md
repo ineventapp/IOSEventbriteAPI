@@ -50,9 +50,9 @@ Afterwards the client can be used to retrieve an accesstoken and access the data
 }
 ```
 
-* The code example retrieves an access token and uses it to get userdata for the user which granted the access.
+* The code example retrieves a code and uses it to get userdata for the user which granted the access.
 * The cancel callback is executed in case the user actively declines the authorization by pressing cancel button in the UIWebView.
-* The failure callbacks is executed in case either the of the steps fails for some reason.
+* The failure callbacks is executed in case anything fails for some reason.
 
 Credits
 --------------------
