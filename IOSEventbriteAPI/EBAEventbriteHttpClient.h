@@ -52,6 +52,6 @@
  * @param ticketURL Eventbrite ticket url.
  * @param callback A block notify the request has finished.
  **/
-- (void)buyTicket:(NSString *)ticketURL callback:(void (^)(void))callback;
+- (void)buyTicket:(NSString *)ticketURL success:(void (^)(void))success cancel:(void (^)(void))cancel;
 
 @end

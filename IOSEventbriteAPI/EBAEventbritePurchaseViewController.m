@@ -11,7 +11,8 @@
 @interface EBAEventbritePurchaseViewController ()
 
 @property(nonatomic, strong) UIWebView *authenticationWebView;
-@property(nonatomic, copy) EBAPurchaseCallback callback;
+@property(nonatomic, copy) EBAPurchaseCallback success;
+@property(nonatomic, copy) EBAPurchaseCallback cancel;
 @property(nonatomic, strong) NSURL *ticketURL;
 
 @end
@@ -24,11 +25,12 @@
 
 BOOL handlingRedirectURL;
 
-- (id)initWithTicketURL:(NSURL *)ticketURL callback:(EBAPurchaseCallback)callback {
+- (id)initWithTicketURL:(NSURL *)ticketURL success:(EBAPurchaseCallback)success cancel:(EBAPurchaseCallback)cancel {
     self = [super init];
     if (self) {
         self.ticketURL = ticketURL;
-        self.callback = callback;
+        self.success = success;
+        self.cancel = cancel;
     }
     return self;
 }
@@ -63,7 +65,7 @@ BOOL handlingRedirectURL;
 #pragma mark UI Action Methods
 
 - (void)tappedCancelButton:(id)sender {
-    self.callback();
+    self.cancel();
 }
 
 @end
@@ -78,7 +80,7 @@ BOOL handlingRedirectURL;
     
     // Processing has finished
     if (handlingRedirectURL) {
-        self.callback();
+        self.success();
     }
     
     return !handlingRedirectURL;
@@ -101,8 +103,14 @@ BOOL handlingRedirectURL;
     // Turn off network activity indicator upon failure to load web view
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
+    // In case the user hits 'Allow' before the page is fully loaded
+    if (error.code == NSURLErrorCancelled) {
+        return;
+    }
+    
+    // Abort if we are on Eventbrite's domain
     if (!handlingRedirectURL) {
-        self.callback();
+        self.cancel();
     }
 }
 

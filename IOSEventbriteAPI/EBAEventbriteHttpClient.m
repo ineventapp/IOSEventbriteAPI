@@ -57,11 +57,16 @@
     [self showControllerView:authorizationViewController];
 }
 
-- (void)buyTicket:(NSString *)ticketURL callback:(void (^)(void))callback {
-    EBAEventbritePurchaseViewController *authorizationViewController = [[EBAEventbritePurchaseViewController alloc] initWithTicketURL:[NSURL URLWithString:ticketURL] callback:^{
+- (void)buyTicket:(NSString *)ticketURL success:(void (^)(void))success cancel:(void (^)(void))cancel {
+    EBAEventbritePurchaseViewController *authorizationViewController = [[EBAEventbritePurchaseViewController alloc] initWithTicketURL:[NSURL URLWithString:ticketURL] success:^{
         [self hideAuthenticateView];
-        if (callback) {
-            callback();
+        if (success) {
+            success();
+        }
+    } cancel:^{
+        [self hideAuthenticateView];
+        if (cancel) {
+            cancel();
         }
     }];
     

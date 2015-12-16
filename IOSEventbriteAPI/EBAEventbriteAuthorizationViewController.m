@@ -120,7 +120,13 @@ BOOL handlingRedirectURL;
 
     // Turn off network activity indicator upon failure to load web view
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    // In case the user hits 'Allow' before the page is fully loaded
+    if (error.code == NSURLErrorCancelled) {
+        return;
+    }
 
+    // Abort if we are on Eventbrite's domain
     if (!handlingRedirectURL) {
         self.failureCallback(error);
     }

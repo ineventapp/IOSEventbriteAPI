@@ -25,6 +25,6 @@ typedef void(^EBAPurchaseCallback)(void);
  * @param callback A standard block.
  * @returns An initialized instance
  **/
-- (id)initWithTicketURL:(NSURL *)ticketURL callback:(EBAPurchaseCallback)callback;
+- (id)initWithTicketURL:(NSURL *)ticketURL success:(EBAPurchaseCallback)success cancel:(EBAPurchaseCallback)cancel;
 
 @end
