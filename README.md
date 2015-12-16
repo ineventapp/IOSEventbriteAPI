@@ -50,12 +50,12 @@ Afterwards the client can be used to retrieve an accesstoken and access the data
 }
 ```
 
-The code example retrieves an access token and uses it to get userdata for the user which granted the access.
-The cancel callback is executed in case the user actively declines the authorization by pressing cancel button in the UIWebView.
-The failure callbacks is executed in case either the of the steps fails for some reason.
+* The code example retrieves an access token and uses it to get userdata for the user which granted the access.
+* The cancel callback is executed in case the user actively declines the authorization by pressing cancel button in the UIWebView.
+* The failure callbacks is executed in case either the of the steps fails for some reason.
 
 Credits
 --------------------
-This library was inspired on jeyben original API for LinkedIn. Since both use OAuth2, I just made some modifications to allow it to work with Eventbrite. [https://github.com/jeyben/IOSLinkedInAPI](https://github.com/jeyben/IOSLinkedInAPI)
+This library was inspired on jeyben original API for LinkedIn. Since both use OAuth2, I just made some modifications to allow it to work with Eventbrite: [https://github.com/jeyben/IOSLinkedInAPI](https://github.com/jeyben/IOSLinkedInAPI).
 
 For its initial setup and further improvments, this library is brought to you by InEvent.
