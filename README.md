@@ -10,9 +10,13 @@ If the enduser is authenticated you end up with a code that is needed to further
 
 How To Get Started
 ------------------
-The library can be fetched as a Pod from [cocoapods](http://cocoapods.org/?q=iosEventbriteapi)
+The library can be fetched as a Pod from [cocoapods](http://cocoapods.org/?q=ioseventbriteapi).
 
-If you aren't using Cocoapods you can always download the library and import the files from the folder IOSEventbriteAPI into your existing project.
+```
+pod 'IOSEventbriteAPI'
+```
+
+If you aren't using Cocoapods you can always download the library and import the files from the folder IOSEventbriteAPI into your existing project. Even though you should ask yourself: why on earth don't you use cocoapods?
 
 Example Code
 ------------
