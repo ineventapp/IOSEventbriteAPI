@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'IOSEventbriteAPI'
-  s.version  = '0.1.0'
+  s.version  = '0.1.1'
   s.license  = 'MIT'
   s.summary  = 'IOS Eventbrite API capable of accessing Eventbrite using oAuth.'
   s.homepage = 'https://github.com/ineventapp/IOSEventbriteAPI'
