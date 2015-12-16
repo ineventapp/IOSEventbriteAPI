@@ -119,20 +119,6 @@ BOOL handlingRedirectURL;
     // Turn off network activity indicator upon finishing web view load
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
-    /* fix for the Eventbrite Auth window - it doesn't scale right when placed into
-     a webview inside of a form sheet modal. If we transform the HTML of the page
-     a bit, and fix the viewport to 540px (the width of the form sheet), the problem
-     is solved.
-     */
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSString *js =
-        @"var meta = document.createElement('meta'); "
-        @"meta.setAttribute( 'name', 'viewport' ); "
-        @"meta.setAttribute( 'content', 'width = 540px, initial-scale = 1.0, user-scalable = yes' ); "
-        @"document.getElementsByTagName('head')[0].appendChild(meta)";
-        
-        [webView stringByEvaluatingJavaScriptFromString:js];
-    }
 }
 
 @end

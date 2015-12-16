@@ -146,7 +146,7 @@ BOOL handlingRedirectURL;
 		NSString *js =
             @"var meta = document.createElement('meta'); "
             @"meta.setAttribute( 'name', 'viewport' ); "
-            @"meta.setAttribute( 'content', 'width = 540px, initial-scale = 1.0, user-scalable = yes' ); "
+            @"meta.setAttribute( 'content', 'width = 320px, initial-scale = 1.0, user-scalable = yes' ); "
             @"document.getElementsByTagName('head')[0].appendChild(meta)";
 		
 		[webView stringByEvaluatingJavaScriptFromString:js];
