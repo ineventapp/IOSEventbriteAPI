@@ -7,10 +7,10 @@ Pod::Spec.new do |s|
   s.authors  = { 'Pedro Góes' => 'goes@inevent.us' }
   s.source   = { :git => 'https://github.com/ineventapp/IOSEventbriteAPI.git', :tag => '1.0.0' }
   s.source_files = 'IOSEventbriteAPI'
-  s.requires_arc = true
 
+  s.frameworks   = 'UIKit', 'MapKit'
   s.platform     = :ios, '7.0'
-
-  s.dependency 'AFNetworking', '>= 2.0.0'
+  s.requires_arc = true
+  s.dependency 'AFNetworking', '~> 2.3'
 
 end
