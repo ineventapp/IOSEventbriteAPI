@@ -6,8 +6,7 @@ The API uses a UIWebView to authenticate against Eventbrite.
 
 ![image](signIn.png)
 
-If the enduser is authenticated you end up with a code that is needed to further authenticate into Eventbrite [API](https://www.eventbrite.com/developer/v3/reference/authentication/)
-
+If the enduser is authenticated you end up with a code that is needed to further authenticate into Eventbrite [API](https://www.eventbrite.com/developer/v3/reference/authentication/).
 
 How To Get Started
 ------------------
@@ -18,15 +17,10 @@ If you aren't using Cocoapods you can always download the library and import the
 Example Code
 ------------
 
-A Eventbrite client is created using a LIAEventbriteApplication.
-A LIAEventbriteApplication defines the application which is granted access to the users Eventbrite data.
+A Eventbrite client is created using a LIAEventbriteApplication. A LIAEventbriteApplication defines the application which is granted access to the users Eventbrite data. Your redirectURL should be set directly on Eventbrite's developer console.
 
 ```
-LIAEventbriteApplication *application = [LIAEventbriteApplication applicationWithRedirectURL:@"http://www.ancientprogramming.com/liaexample"
-                                                                                  clientId:@"clientId"
-                                                                              clientSecret:@"clientSecret"
-                                                                                     state:@"DCEEFWF45453sdffef424"
-                                                                             grantedAccess:@[@"r_fullprofile", @"r_network"]];
+LIAEventbriteApplication *application = [LIAEventbriteApplication applicationWithClientId:@"LETTERS" clientSecret:@"LETTERSLETTERSLETTERSLETTERSLETTERSLETTERS"];
 return [LIAEventbriteHttpClient clientForApplication:application presentingViewController:nil];
 ```
 
@@ -38,29 +32,23 @@ Afterwards the client can be used to retrieve an accesstoken and access the data
 
 ```
 - (IBAction)didTapConnectWithEventbrite:(id)sender {
-  [self.client getAuthorizationCode:^(NSString *code) {
-    [self.client getAccessToken:code success:^(NSDictionary *accessTokenData) {
-      NSString *accessToken = [accessTokenData objectForKey:@"access_token"];
-      [self requestMeWithToken:accessToken];
-    }                   failure:^(NSError *error) {
-      NSLog(@"Quering accessToken failed %@", error);
+    [ebClient getAuthorizationCode:^(NSString *code) {
+        // Run your code here
+        
+    } cancel:^{
+        // Session is closed
+        NSLog(@"Error");
+        
+    } failure:^(NSError *error) {
+        // Session is closed
+        NSLog(@"Error");
     }];
-  }                      cancel:^{
-    NSLog(@"Authorization was cancelled by user");
-  }                     failure:^(NSError *error) {
-    NSLog(@"Authorization failed %@", error);
-  }];
 }
 ```
 
 The code example retrieves an access token and uses it to get userdata for the user which granted the access.
-The cancel callback is executed in case the user actively declines the authorization by pressing cancel button in the UIWebView (see illustration above).
+The cancel callback is executed in case the user actively declines the authorization by pressing cancel button in the UIWebView.
 The failure callbacks is executed in case either the of the steps fails for some reason.
-
-Example App
-------------
-Just run 'pods install' in the directory after your clone and you should be able to run the app afterwards
-
 
 Credits
 --------------------
